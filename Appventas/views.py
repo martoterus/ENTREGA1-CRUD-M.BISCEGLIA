@@ -310,7 +310,7 @@ def eliminaraccesorios(request, id):
  
        return render (request, "VerFormulario_Accesorios.html", contexto)
 
-#EDITAR
+#EDITAR DATOS
 
 def editarbicis(request, id):
 
@@ -324,13 +324,13 @@ def editarbicis(request, id):
             print("Entro al 2° if")
             data=BiciFormulario.cleaned_data
         
-            bicicleta.codigo = data ["codigo"]
-            bicicleta.marca = data ["marca"]
-            bicicleta.modelo = data ["modelo"]
-            bicicleta.rodado = data ["rodado"]
-            bicicleta.color = data ["color"]
-            bicicleta.descripcion = data ["descripcion"]
-            bicicleta.precio = data ["precio"]
+            bicicleta.codigo = data ["Codigo"]
+            bicicleta.marca = data ["Marca"]
+            bicicleta.modelo = data ["Modelo"]
+            bicicleta.rodado = data ["Rodado"]
+            bicicleta.color = data ["Color"]
+            bicicleta.descripcion = data ["Descripcion"]
+            bicicleta.precio = data ["Precio"]
 
             bicicleta.save()
             return render(request, "Save.html")
@@ -361,26 +361,95 @@ def editarrepuestos(request, id):
             print("Entro al 2° if")
             data=repuFormulario.cleaned_data
         
-            repuesto.codigo = data ["codigo"]
-            repuesto.marca = data ["marca"]
-            repuesto.tipo = data ["tipo"]
-            repuesto.modelo = data ["modelo"]
-            repuesto.descripcion = data ["repuesto"]
-            repuesto.precio = data ["repuesto"]
+            repuesto.codigo = data ["Codigo"]
+            repuesto.marca = data ["Marca"]
+            repuesto.tipo = data ["Tipo"]
+            repuesto.modelo = data ["Modelo"]
+            repuesto.descripcion = data ["Descripcion"]
+            repuesto.precio = data ["Precio"]
 
+            print(repuesto)
             repuesto.save()
             return render(request, "Save.html")
     
     else:
-        repuFormulario=repuestosFormulario(initial={
+         repuFormulario=repuestosFormulario(initial={
             "codigo": repuesto.codigo,
             "marca": repuesto.marca,
             "modelo": repuesto.modelo,
             "tipo": repuesto.tipo,
             "descripcion": repuesto.descripcion,
             "precio": repuesto.precio,
+         })
+         return render(request,"EditarRepuestos.html", {"RepuFormulario": repuFormulario , "id": repuesto.id})
+
+def editaraccesorios(request, id):
+
+    accesorio = accesorios.objects.get(id = id)
+
+    if request.method == 'POST':
+        
+        accFormulario=accesoriosFormulario(request.POST)
+
+        if accFormulario.is_valid():
+            print("Entro al 2° if")
+            data=accFormulario.cleaned_data
+        
+            accesorio.codigo = data ["Codigo"]
+            accesorio.marca = data ["Marca"]
+            accesorio.tipo = data ["Tipo"]
+            accesorio.modelo = data ["Modelo"]
+            accesorio.descripcion = data ["Descripcion"]
+            accesorio.precio = data ["Precio"]
+
+            accesorio.save()
+        return render(request, "Save.html")
+    
+    else:
+        accformulario=accesoriosFormulario(initial={
+            "codigo": accesorio.codigo,
+            "marca": accesorio.marca,
+            "modelo": accesorio.modelo,
+            "tipo": accesorio.tipo,
+            "descripcion": accesorio.descripcion,
+            "precio": accesorio.precio,
         })
-        return render(request,"EditarRepuestos.html", {"RepuFormulario": repuFormulario , "id": repuesto.id})
+        return render(request,"EditarAccesorios.html", {"AccFormulario": accformulario , "id": accesorio.id})
+
+def editarindumentaria(request, id):
+
+    indumentarias = indumentaria.objects.get(id = id)
+
+    if request.method == 'POST':
+        
+        induformulario=indumentariaFormularios(request.POST)
+
+        if induformulario.is_valid():
+            print("Entro al 2° if")
+            data=induformulario.cleaned_data
+        
+            indumentarias.codigo = data ["Codigo"]
+            indumentarias.marca = data ["Marca"]
+            indumentarias.tipo = data ["Tipo"]
+            indumentarias.modelo = data ["Modelo"]
+            indumentarias.talle = data ["Talle"]
+            indumentarias.descripcion = data ["Descripcion"]
+            indumentarias.precio = data ["Precio"]
+
+            indumentarias.save()
+            return render(request, "Save.html")
+    
+    else:
+        induformulario=indumentariaFormularios(initial={
+            "codigo": indumentarias.codigo,
+            "marca": indumentarias.marca,
+            "modelo": indumentarias.modelo,
+            "tipo": indumentarias.tipo,
+            "talle": indumentarias.talle,
+            "descripcion": indumentarias.descripcion,
+            "precio": indumentarias.precio,
+         })
+        return render(request,"EditarIndumentaria.html", {"InduFormulario": induformulario , "id": indumentarias.id})                   
 
 
     

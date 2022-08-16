@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from Appventas.views import BusquedaAcc, Formularioaccesorios, Formulariobicis, Formularioindumentarias, Formulariorepuestos, LeerAcc, ResultAcc, editarbicis, editarrepuestos, eliminarIndumentaria, eliminaraccesorios, eliminarbici, eliminarrepuestos, inicio, Busquedabicis
+from Appventas.views import BusquedaAcc, Formularioaccesorios, Formulariobicis, Formularioindumentarias, Formulariorepuestos, LeerAcc, ResultAcc, editaraccesorios, editarbicis, editarindumentaria, editarrepuestos, eliminarIndumentaria, eliminaraccesorios, eliminarbici, eliminarrepuestos, inicio, Busquedabicis
 from Appventas.views import LeerIndum, LeerBicis, LeerRepu
 
 from Appventas.views import ResultBici
@@ -47,6 +47,8 @@ urlpatterns = [
     #EDITAR
     path('editarbicis/<int:id>', editarbicis, name="Editarbicis"),
     path('editarrepu/<int:id>', editarrepuestos, name="Editarrepu"),
+    path('editaracce/<int:id>', editaraccesorios, name="Editaracce"),
+    path('editarindu/<int:id>', editarindumentaria, name="Editarindu"),
 
     
 ]

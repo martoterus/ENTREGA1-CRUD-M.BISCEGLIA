@@ -10,17 +10,20 @@
         {% for Item in Accesorios  %}
         <li>Codigo: {{Item.codigo}}. Tipo: {{Item.tipo}}. Marca: {{Item.marca}}. Modelo: {{Item.modelo}}. Descripcion: {{Item.descripcion}}. Precio: ${{Item.precio}}.</li>
         <div>
-            <form action="{% url 'Eliminarbici' Item.id %}" method = "POST">{% csrf_token %}
+            <form action="{% url 'Eliminaracc' Item.id %}" method = "POST">{% csrf_token %}
                 
                  <button type="submit">Eliminar</button>
 
             </form>
+            <button>
+                <a href="{% url 'Editaracce' Item.id %}">Editar</a>
+           </button>
         </div>
         {% endfor %}
    
     <br><br>
     <br><br>
-    <a href="{% url 'bici_formulario' %}">Agregar otra bicicleta</a>  
+    <a href="{% url 'acc_formulario' %}">Agregar otro accesorio</a>  
         
    <div class="text-center" ><a class="btn btn-outline-dark mt-auto" href="/Appventas/">VOLVER</a></div>
     
