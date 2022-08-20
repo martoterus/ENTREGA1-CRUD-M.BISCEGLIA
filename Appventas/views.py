@@ -15,7 +15,6 @@ def Nosotros(request):#Template de Nostros
 
     return render(request, "QuienesSomos.html")
 
-
 def Formularios(request):#Template de Formularios
 
     return render(request, "Formularios.html")
